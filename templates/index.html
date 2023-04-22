@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Morse Code Converter</title>
+</head>
+<body>
+    <h1>Morse Code Converter</h1>
+    <hr>
+    <form method="post" action="/morse-to-text">
+        <label for="morse-code">Morse Code:</label>
+        <input type="text" name="morse-code" id="morse-code">
+        <input type="submit" value="Convert to Text">
+    </form>
+    {% if text %}
+        <p>Text: {{ text }}</p>
+    {% endif %}
+    {% if error %}
+        <p>Error: {{ error }}</p>
+    {% endif %}
+
+    <form method="post" action="/text-to-morse">
+        <label for="text">Text:</label>
+        <input type="text" name="text" id="text">
+        <input type="submit" value="Convert to Morse Code">
+    </form>
+    {% if morse_code %}
+        <p>Morse Code: {{ morse_code }}</p>
+    {% endif %}
+    {% if error %}
+        <p>Error: {{ error }}</p>
+    {% endif %}
+
+</body>
+</html>
