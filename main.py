@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-import pyttsx3
+from flask import *
 
 
 def morse_to_text(morse_code):
@@ -112,40 +112,17 @@ def text_to_morse_route():
         error_message = f"Error: {e}"
         return render_template('index.html', error=error_message)
 
-# create an instance of the pyttsx3 engine
 
-
-# engine = pyttsx3.init()
+# @app.route('/morse_to_audio', methods=['POST'])
+# def generate1():
+#     print("morse_to_audio")
+#     return render_template('index.html')
 #
 #
-# @app.route('/morse-to-text', methods=['POST'])
-# def morse_to_text_route():
-#     try:
-#         morse_code = request.form['morse-code']
-#         text = morse_to_text(morse_code)
-#         engine.say(text)
-#         engine.runAndWait()
-#         engine.stop()
-#         return render_template('index.html', text=text)
-#     except Exception as e:
-#         error_message = f"Error: {e}"
-#         engine.stop()
-#         return render_template('index.html', error=error_message)
-#
-#
-# @app.route('/text-to-morse', methods=['POST'])
-# def text_to_morse_route():
-#     try:
-#         text = request.form['text']
-#         morse_code = text_to_morse(text)
-#         engine.say(morse_code)
-#         engine.runAndWait()
-#         engine.stop()
-#         return render_template('index.html', morse_code=morse_code)
-#     except Exception as e:
-#         error_message = f"Error: {e}"
-#         engine.stop()
-#         return render_template('index.html', error=error_message)
+# @app.route('/text_to_audio', methods=['POST'])
+# def generate2():
+#     print("morse_to_audio")
+#     return render_template('index.html')
 
 
 if __name__ == '__main__':

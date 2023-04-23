@@ -2,17 +2,22 @@
 <html>
 <head>
     <title>Morse Code Converter</title>
+    <link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
 </head>
 <body>
-    <h1>Morse Code Converter</h1>
+    <header>
+        <h1>Morse Code Converter</h1>
+        <code><a href="https://atharv4git.github.io/webpage/">Atharv Kulkarni</a></code>
+    </header>
     <hr>
     <form method="post" action="/morse-to-text">
         <label for="morse-code">Morse Code:</label>
         <input type="text" name="morse-code" id="morse-code">
-        <input type="submit" value="Convert to Text">
+        <input id="sub" type="submit" value="Convert to Text">
     </form>
     {% if text %}
-        <p>Text: {{ text }}</p>
+        <p id="text_output">Text: {{ text }}</p>
+        <button id="cpy" onclick="copyText()">Copy Text</button>
     {% endif %}
     {% if error %}
         <p>Error: {{ error }}</p>
@@ -21,14 +26,35 @@
     <form method="post" action="/text-to-morse">
         <label for="text">Text:</label>
         <input type="text" name="text" id="text">
-        <input type="submit" value="Convert to Morse Code">
+        <input id="sub" type="submit" value="Convert to Morse Code">
     </form>
     {% if morse_code %}
-        <p>Morse Code: {{ morse_code }}</p>
+        <p id="morse_code">Morse Code: {{ morse_code }}</p>
+        <button id="cpy" onclick="copyMorse()">Copy Morse Code</button>
     {% endif %}
     {% if error %}
         <p>Error: {{ error }}</p>
     {% endif %}
+    <script>
+      function copyMorse() {
+        const range = document.createRange();
+        range.selectNode(document.getElementById("morse_code"));
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+      }
+
+      function copyText() {
+        const range = document.createRange();
+        range.selectNode(document.getElementById("text_output"));
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+      }
+    </script>
+
 
 </body>
 </html>
